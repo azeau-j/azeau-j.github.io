@@ -1,4 +1,5 @@
 export class MangadexApi {
+    static PROXY_URL = "https://cors-anywhere.herokuapp.com/";
     static API_URL = "https://api.mangadex.org";
 
     static TAGS = [];
@@ -8,7 +9,7 @@ export class MangadexApi {
             return this.TAGS;
 
         console.log("Call API")
-        let response = await fetch(`${this.API_URL}/manga/tag`);
+        let response = await fetch(`${PROXY_URL}${this.API_URL}/manga/tag`);
         let responseJson = await response.json();
 
         return responseJson.data.map((value) => {
@@ -46,7 +47,7 @@ export class MangadexApi {
         }
 
         console.log(`${this.API_URL}/manga/random?${randomParams}`)
-        let response = await fetch(`${this.API_URL}/manga/random?${randomParams}`, {
+        let response = await fetch(`${PROXY_URL}${this.API_URL}/manga/random?${randomParams}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
