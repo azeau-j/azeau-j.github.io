@@ -32,7 +32,10 @@ export class Manga {
         this.mangaTitleELement.innerText = manga.attributes.title['en'];
         this.mangaSynopsisElement.innerText = manga.attributes.description['en'];
 
-        this.mangaCoverElement.src = this.getCoverUrl(manga);
+        this.getCover(manga).then(cover => {
+            this.mangaCoverElement.src = URL.createObjectURL(cover);
+        });
+
         this.mangaCoverElement.alt = `Cover of ${manga.attributes.title['en']}`;
 
         for (let i in manga.attributes.tags) {
@@ -50,6 +53,19 @@ export class Manga {
             return "./public/img/loading_page.jpg";
 
         let coverFilename = art.attributes['fileName'];
-        return `https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`
+        fetch(`https://cors-anywhere.herokuapp.com/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`).then(res => console.log(res))
+        return `https://cors-anywhere.herokuapp.com/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`
     }
+
+    async getCover(manga) {
+        let art = manga.relationships.find(relation => relation.type === "cover_art");
+
+        if (!art)
+            return "./public/img/loading_page.jpg";
+
+        let coverFilename = art.attributes['fileName'];
+        let coverResponse = await fetch(`https://cors-anywhere.herokuapp.com/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`);
+        
+        return coverResponse.blob();
+     }
 }
