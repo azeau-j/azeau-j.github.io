@@ -9,7 +9,7 @@ export class MangadexApi {
             return this.TAGS;
 
         console.log("Call API")
-        let response = await fetch(`${PROXY_URL}${this.API_URL}/manga/tag`);
+        let response = await fetch(`${this.PROXY_URL}${this.API_URL}/manga/tag`);
         let responseJson = await response.json();
 
         return responseJson.data.map((value) => {
@@ -46,8 +46,8 @@ export class MangadexApi {
             randomParams.append("excludedTags[]", excludeTags[k].id);
         }
 
-        console.log(`${this.API_URL}/manga/random?${randomParams}`)
-        let response = await fetch(`${PROXY_URL}${this.API_URL}/manga/random?${randomParams}`, {
+        console.log(`${this.PROXY_URL}${this.API_URL}/manga/random?${randomParams}`)
+        let response = await fetch(`${this.PROXY_URL}${this.API_URL}/manga/random?${randomParams}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json',
