@@ -21,6 +21,7 @@ export class MangadexApi {
     }
 
     static async GetRandom(includeTags, excludeTags, contentRatings) {
+
         let randomParams = new URLSearchParams();
         randomParams.append("includes[]", "manga")
         randomParams.append("includes[]", "cover_art")
@@ -31,11 +32,11 @@ export class MangadexApi {
         }
 
         for (let k in includeTags) {
-            randomParams.append("includedTags[]", includeTags[k].id);
+            randomParams.append("includedTags[]", includeTags[k]);
         }
 
         for (let k in excludeTags) {
-            randomParams.append("excludedTags[]", excludeTags[k].id);
+            randomParams.append("excludedTags[]", excludeTags[k]);
         }
 
         let response = await fetch(`${this.PROXY_URL}${this.API_URL}/manga/random?${randomParams}`, {
