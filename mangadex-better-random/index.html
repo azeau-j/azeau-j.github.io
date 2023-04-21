@@ -6,26 +6,54 @@
         <title>Better Mangadex Random</title>
 
         <link rel="stylesheet" href="./public/css/style.css">
+        <link rel="stylesheet" href="./public/css/manga.css">
+        <link rel="stylesheet" href="./public/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="./public/img/favicon.ico">
+        
         <script type="module" src="./public/js/main.js" defer></script>
     </head>
 
     <body>
         <main>
             <div>
-                <h1>Tags</h1>
-                <button id="tags-button-visibility">Hide</button>
-                <div id="tags-container">
+                <h1 style="margin-top: 0;">Tags</h1>
+                <button id="tags-button-visibility" class="round-button">Hide</button>
+                <div id="tags-container" class="tags-container">
 
                 </div>
             </div>
 
             <div>
                 <h1>Content Ratings</h1>
-                <button>Hide</button>
-                <div>
+                <button id="content-ratings-button-visibility" class="round-button">Hide</button>
+                <div id="content-ratings-container" class="tags-container">
                     
                 </div>
             </div>
-        </div>
+
+            <hr>
+
+            <button id="random-button" class="round-button">Random</button>
+
+            <a id="manga-card" href="#" target="_blank">
+                <img id="manga-cover" class="manga-cover" src="https://uploads.mangadex.org/covers/5bdd7755-e09b-494d-810a-08f447033c0e/a4c8d2e7-885f-4aa8-8932-06f1c9da3ed6.jpg" alt="Loading page">
+                <div class="manga-info">
+                    <h2 id="manga-title" class="manga-title">Un titre de manga vraiment très long (genre un isekai pas ouf)</h2>
+                    <p id="manga-synopsis" class="manga-synopsis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, ullam illum? Quod quis cumque incidunt asperiores similique tempore unde dicta. Debitis facere neque architecto voluptates quisquam dolor rem repellat nobis! Esse voluptatem exercitationem architecto magni, necessitatibus eaque nesciunt quisquam. Provident consectetur officia magnam hic ratione corporis suscipit impedit quas et!</p>
+                    <div id="manga-tags" class="manga-tags">
+                        <p class="manga-tag">TEST 1</p>
+                        <p class="manga-tag">TEST 2</p>
+                        <p class="manga-tag">TEST 3</p>
+                        <p class="manga-tag">TEST 4</p>
+                        <p class="manga-tag">TEST 5</p>
+                        <p class="manga-tag">TEST 6</p>
+                        <p class="manga-tag">TEST 7</p>
+                        <p class="manga-tag">TEST 8</p>
+                        <p class="manga-tag">TEST 9</p>
+                        <p class="manga-tag">TEST 10</p>
+                    </div>
+                </div>
+            </a>
+        </main>
     </body>
 </html>
