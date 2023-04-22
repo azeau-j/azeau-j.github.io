@@ -50,6 +50,7 @@ function getNewRandomManga(mangaElement, tagsForm, contentRatingsForm) {
         return;
     }
 
+    mangaElement.reset();
     MangadexApi.GetRandom(tags.includeTags, tags.excludeTags, contentRatings.includeContentRatings).then(manga => {
         saveMangaInLocalStorage(manga);
         mangaElement.setManga(manga);
