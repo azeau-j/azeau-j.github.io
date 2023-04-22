@@ -46,6 +46,7 @@ export class MangadexApi {
             }
         });
         let responseJson = await response.json();
+
         return responseJson.data;
     }
 }

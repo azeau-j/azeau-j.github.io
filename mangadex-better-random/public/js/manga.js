@@ -30,10 +30,14 @@ export class Manga {
         this.mangaLinkElement.href = `https://mangadex.org/title/${manga.id}`;
 
         this.mangaTitleELement.innerText = manga.attributes.title['en'];
-        this.mangaSynopsisElement.innerText = manga.attributes.description['en'];
+
+        if (Object.keys(manga.attributes.description).length === 0 || !manga.attributes.description['en']) {
+            this.mangaSynopsisElement.innerText = "There is no synopsis for this manga !";
+        } else {
+            this.mangaSynopsisElement.innerText = manga.attributes.description['en'];
+        }
 
         this.getCover(manga).then(cover => {
-            console.log(cover);
             this.mangaCoverElement.src = URL.createObjectURL(cover);
         });
 
