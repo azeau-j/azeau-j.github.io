@@ -33,6 +33,7 @@ export class Manga {
         this.mangaSynopsisElement.innerText = manga.attributes.description['en'];
 
         this.getCover(manga).then(cover => {
+            console.log(cover);
             this.mangaCoverElement.src = URL.createObjectURL(cover);
         });
 
@@ -64,7 +65,7 @@ export class Manga {
             return "./public/img/loading_page.jpg";
 
         let coverFilename = art.attributes['fileName'];
-        let coverResponse = await fetch(`https://cors-anywhere.herokuapp.com/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`);
+        let coverResponse = await fetch(`https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`);
         
         return coverResponse.blob();
      }
