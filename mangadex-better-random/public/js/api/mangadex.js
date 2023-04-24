@@ -1,5 +1,6 @@
 export class MangadexApi {
-    static PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    // static PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+    static PROXY_URL = "http://localhost:8080/";
     static API_URL = "https://api.mangadex.org";
 
     static TAGS = [];
