@@ -38,7 +38,9 @@ export class Manga {
         }
 
         this.getCover(manga).then(cover => {
-            this.mangaCoverElement.src = URL.createObjectURL(cover);
+            this.mangaCoverElement.src = `/${cover.url}?random=${performance.now()}`;
+            console.log(cover);
+            // this.mangaCoverElement.src = URL.createObjectURL(cover);
         });
 
         this.mangaCoverElement.alt = `Cover of ${manga.attributes.title['en']}`;
@@ -51,16 +53,15 @@ export class Manga {
         }
     }
 
-    getCoverUrl(manga) {
+    /*getCoverUrl(manga) {
         let art = manga.relationships.find(relation => relation.type === "cover_art");
 
         if (!art)
             return "./public/img/loading_page.jpg";
 
         let coverFilename = art.attributes['fileName'];
-        fetch(`https://cors-anywhere.herokuapp.com/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`).then(res => console.log(res))
-        return `https://cors-anywhere.herokuapp.com/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`
-    }
+        return `http://localhost:3000/images/https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`
+    }*/
 
     async getCover(manga) {
         let art = manga.relationships.find(relation => relation.type === "cover_art");
@@ -69,8 +70,17 @@ export class Manga {
             return "./public/img/loading_page.jpg";
 
         let coverFilename = art.attributes['fileName'];
-        let coverResponse = await fetch(`https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`);
+        let coverResponse = await fetch(`/images`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                url: `https://uploads.mangadex.org/covers/${manga.id}/${coverFilename}`,
+                id: `${manga.id}`
+            }),
+        });
         
-        return coverResponse.blob();
+        return coverResponse.json();
      }
 }
